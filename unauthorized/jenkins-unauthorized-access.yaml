@@ -1,4 +1,4 @@
-id: jenkins-unauthorized-rce
+id: jenkins-unauthorized-access
 
 info:
     name: Jenkins unauthorized rce
