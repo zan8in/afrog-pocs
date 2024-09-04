@@ -169,7 +169,7 @@ rules:
       path: /v2/api-docs
     expression: |
       response.status == 200 && 
-      response.body.bconains(b'"info":') &&
+      response.body.bcontains(b'"info":') &&
       response.body.bcontains(b'"description":')  &&
       response.body.bcontains(b'"version":') &&
       response.body.bcontains(b'"title":')
