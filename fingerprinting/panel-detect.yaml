@@ -5,6 +5,10 @@ info:
   author: zan8in
   severity: info
   verified: true
+  description: |-
+    Panel Detect
+  tags: panel,detect
+  created: 2023/11/30
 
 rules:
   r0:
@@ -84,7 +88,8 @@ rules:
       - '"cleo-panel" != "" && response.status == 200 && response.headers["server"].icontains("Cleo")'
       - '"hjsoft-panel" != "" && response.status == 200 && response.body.bcontains(b"class=\"hj-wzm-copyright\"") && response.body.bcontains(b"宏景软件  版权所有")'
       - '"zzsk-panel" != "" && response.status == 200 && response.body.bcontains(b"/Images/ManLogin/name.png") && response.body.bcontains(b"/Content/ManLogin/style.css")'
-
+      - '"roundcube-webmail-panel" != "" && response.status == 200 && response.body.ibcontains(b"<title>Roundcube Webmail") && response.body.bcontains(b"rcversion")'
+      - '"fortiweb-panel" != "" && response.status == 200 && response.body.ibcontains(b"<title>FortiWeb -")'
   r1:
     request:
       method: GET
@@ -163,5 +168,7 @@ rules:
       - '"cleo-panel" != "" && response.status == 200 && response.headers["server"].icontains("Cleo")'
       - '"hjsoft-panel" != "" && response.status == 200 && response.body.bcontains(b"class=\"hj-wzm-copyright\"") && response.body.bcontains(b"宏景软件  版权所有")'
       - '"zzsk-panel" != "" && response.status == 200 && response.body.bcontains(b"/Images/ManLogin/name.png") && response.body.bcontains(b"/Content/ManLogin/style.css")'
+      - '"roundcube-webmail-panel" != "" && response.status == 200 && response.body.ibcontains(b"<title>Roundcube Webmail") && response.body.bcontains(b"rcversion")'
+      - '"fortiweb-panel" != "" && response.status == 200 && response.body.ibcontains(b"<title>FortiWeb -")'
 
 expression: r0() || r1()

